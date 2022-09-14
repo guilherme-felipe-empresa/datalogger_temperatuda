@@ -1,0 +1,31 @@
+#include "max6675.h"
+
+int thermoDO = 19;
+int thermoCS = 23;
+int thermoCLK = 5;
+const int LED = 33;
+
+MAX6675 sensor(thermoCLK,thermoCS,thermoDO);
+
+void setup(){
+  Serial.begin(9600);
+  pinMode(LED,INPUT);
+  delay(500);
+  }
+
+
+void loop(){
+  float temp = sensor.readCelsius();
+  Serial.print("Celsius = ");
+  Serial.println(temp);
+  if(temp >= 26){
+    digitalWrite(LED,HIGH);
+    Serial.println("led ligado");
+    }
+  //Serial.print("fahrenheit = ");
+  //Serial.println(sensor.readFahrenheit());
+  //Serial.print("Kelvin = ");
+  //Serial.println(sensor.readCelsius() + 273);
+  delay(1000);
+  
+}
