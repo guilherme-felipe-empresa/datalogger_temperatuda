@@ -1,4 +1,3 @@
-
 #include <WiFi.h>
 #include <ESPAsyncWebServer.h>
 #include <AsyncTCP.h>
@@ -174,7 +173,7 @@ void setup() {
     // Connect to Wi-Fi network with SSID and password
     Serial.println("Setting AP (Access Point)");
     // NULL sets an open Access Point
-    WiFi.softAP("ESP-WIFI-MANAGER", NULL);
+    WiFi.softAP("WiFi_Datalogger", NULL);
 
     IPAddress IP = WiFi.softAPIP();
     Serial.print("AP IP address: ");
@@ -229,13 +228,23 @@ void setup() {
       }
       
       request->send(200, "text/html", "Done. ESP will restart, connect to your router and go to IP address: " + ip);
-      delay(1000);
+      delay(3000);
       ESP.restart();
     });
     server.begin();
   }
 }
 
+int cont = 0;
 void loop() {
+  delay(3000);
+  if(WiFi.status() != WL_CONNECTED) {
+    Serial.printf("cont = %s \n", String(cont));
+    if(cont == 50){
+      ESP.restart();
+      cont == 0;
+      }
+    cont++;
+    }
 
 }
