@@ -227,8 +227,8 @@ void setup() {
           //Serial.printf("POST[%s]: %s\n", p->name().c_str(), p->value().c_str());
         }
       }
-      String ip_ = "<a href=" + ip +">"+ ip +"</a>";
-      request->send(200, "text/html", "Done. ESP will restart, connect to your router and go to IP address: " + ip_);
+      
+      request->send(200, "text/html", "Done. ESP will restart, connect to your router and go to IP address: " + ip);
       delay(3000);
       ESP.restart();
     });
