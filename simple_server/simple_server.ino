@@ -229,7 +229,7 @@ void setup() {
       }
       
       request->send(200, "text/html", "Done. ESP will restart, connect to your router and go to IP address: " + ip);
-      delay(3000);
+      delay(1000);
       ESP.restart();
     });
     server.begin();
